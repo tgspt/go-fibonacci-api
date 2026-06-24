@@ -78,19 +78,13 @@ jobs:
     needs: build-test-docker
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Trigger API test workflow
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          event-type: run-api-tests
-          client-payload: '{"image": "${{ secrets.DOCKERHUB_USERNAME }}/go-fibonacci-api", "tag":"${{ needs.build-test-docker.outputs.short_sha }}"}'
+
 
   update-k8s-manifest:
       needs:
         - build-test-docker
         - scan-image
-        - api-testing
+  
       runs-on: ubuntu-latest
 
       steps:
