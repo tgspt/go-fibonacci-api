@@ -74,9 +74,7 @@ jobs:
           exit-code: 0
           ignore-unfixed: true
 
-  api-testing:
-    needs: build-test-docker
-    runs-on: ubuntu-latest
+
 
 
 
